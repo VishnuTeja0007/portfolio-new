@@ -1,7 +1,8 @@
 import React from "react";
-import { Box, Typography, Grid, LinearProgress, Paper } from "@mui/material";
+import { Box, Container, Typography, Grid, useTheme, Paper } from "@mui/material";
 import { motion } from "framer-motion";
-import { styled } from "@mui/system";
+import StarIcon from '@mui/icons-material/Star';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
 
 // Placeholder icons
 import htmlIcon from "../assets/html.svg";
@@ -11,63 +12,91 @@ import reactIcon from "../assets/react.svg";
 import nodeIcon from "../assets/node.svg";
 import mysqlIcon from "../assets/mysql.svg";
 import mongoIcon from "../assets/mongodb.svg";
-import gitIcon from "../assets/git.svg";
+import teamwork from "../assets/team.svg";
+import time from "../assets/time.svg";
+import problemsolving from "../assets/solving.svg";
+import adaptability from "../assets/adaptability.svg";
 
-const skills = [
-  {
-    icon: htmlIcon,
-    title: "HTML",
-    description: "Semantic, accessible, responsive markup",
-    proficiency: 90,
-  },
-  {
-    icon: cssIcon,
-    title: "CSS",
-    description: "Layouts, Flexbox, Grid, animations",
-    proficiency: 85,
-  },
-  {
-    icon: jsIcon,
-    title: "JavaScript",
-    description: "ES6+, DOM manipulation, APIs",
-    proficiency: 80,
-  },
-  {
-    icon: reactIcon,
-    title: "React",
-    description: "Hooks, components, state management",
-    proficiency: 85,
-  },
-  {
-    icon: nodeIcon,
-    title: "Node.js",
-    description: "REST APIs, middleware, async ops",
-    proficiency: 75,
-  },
-  {
-    icon: mysqlIcon,
-    title: "MySQL",
-    description: "Database design, joins, queries",
-    proficiency: 80,
-  },
-  {
-    icon: mongoIcon,
-    title: "MongoDB",
-    description: "NoSQL, collections, aggregation",
-    proficiency: 70,
-  },
-  {
-    icon: gitIcon,
-    title: "Git",
-    description: "Version control, branching, GitHub",
-    proficiency: 90,
-  },
-];
+// import gitIcon from "../assets/git.svg"; // Git removed as it doesn't fit the categories
 
-const SkillCard = ({ icon, title, description, proficiency }) => {
+const skills = {
+  languages: [
+    {
+      icon: htmlIcon,
+      title: "HTML",
+      description: "Semantic, accessible, responsive markup with modern HTML5 features",
+      rating: 5,
+    },
+    {
+      icon: cssIcon,
+      title: "CSS",
+      description: "Advanced layouts, Flexbox, Grid, animations, and responsive design",
+      rating: 4,
+    },
+    {
+      icon: jsIcon,
+      title: "JavaScript",
+      description: "Modern ES6+, DOM manipulation, APIs, and asynchronous programming",
+      rating: 4,
+    },
+  ],
+  frameworks: [
+    {
+      icon: reactIcon,
+      title: "React",
+      description: "Component-based architecture, Hooks, state management, and modern React patterns",
+      rating: 4,
+    },
+    {
+      icon: nodeIcon,
+      title: "Node.js",
+      description: "Server-side development, REST APIs, middleware, and asynchronous operations",
+      rating: 3,
+    },
+  ],
+  databases: [
+    {
+      icon: mysqlIcon,
+      title: "MySQL",
+      description: "Relational database design, complex joins, optimized queries, and data modeling",
+      rating: 4,
+    },
+    {
+      icon: mongoIcon,
+      title: "MongoDB",
+      description: "NoSQL database management, collections, aggregation, and data modeling",
+      rating: 3,
+    },
+    
+  ],
+  softskills:[{
+    icon:teamwork,
+    title:"Teamwork",
+    description:"Played Team leader role in final year group project",
+    rating:4
+  },{
+    icon:problemsolving,
+    title:"Problem Solving",
+    description:"I have Strong Problem skills with python and DSA",
+    rating:4
+  },{
+    icon:time,
+    title:"Time Management",
+    description:"I am very punctual with deadlines and can manage my time efficiently",
+    rating:4
+  },
+  {
+    icon:adaptability,
+    title:"Adaptability",
+    description:"I can easily adapt to any new technology that was given to me within given prep time",
+    rating:4
+  }]
+};
+
+const SkillCard = ({ icon, title, description, rating }) => {
   return (
     <motion.div
-      whileHover={{ scale: 1.05 }}
+      whileHover={{ scale: 1.02 }}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -75,57 +104,115 @@ const SkillCard = ({ icon, title, description, proficiency }) => {
     >
       <Paper
         elevation={3}
-        sx={{ p: 2, display: "flex", flexDirection: "column", gap: 2 }}
+        sx={{
+          p: 4,
+          display: "flex",
+          flexDirection: "column",
+          gap: 3,
+          height: "100%",
+          width:{lg:"80vw"},
+          borderRadius: 0,
+        }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
           <Box
             component="img"
             src={icon}
             alt={title}
-            sx={{ width: 40, height: 40 }}
+            sx={{ width: 60, height: 60 }}
           />
           <Box>
-            <Typography variant="h6">{title}</Typography>
-            <Typography variant="body2">{description}</Typography>
+            <Typography variant="h5" fontWeight="bold">{title}</Typography>
+            <Box sx={{ display: "flex", gap: 0.5, mt: 1 }}>
+              {[...Array(5)].map((_, index) => (
+                index < rating ? 
+                  <StarIcon key={index} sx={{ color: "gold" }} /> : 
+                  <StarBorderIcon key={index} sx={{ color: "gold" }} />
+              ))}
+            </Box>
           </Box>
         </Box>
-        <LinearProgress
-          variant="determinate"
-          value={proficiency}
-          sx={{ height: 8, borderRadius: 5 }}
-        />
+        <Typography variant="body1" sx={{ fontSize: "1.1rem", lineHeight: 1.6 }}>
+          {description}
+        </Typography>
       </Paper>
     </motion.div>
   );
 };
 
 const SkillsSection = () => {
+  const theme = useTheme();
   return (
-    <Box sx={{ px: 4, py: 8 }}>
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-      >
-        <Typography variant="h4" gutterBottom>
-          Skills
-        </Typography>
-        <Typography variant="body1" sx={{ mb: 4 }}>
-          I’m a passionate developer with a wide array of technical skills and soft skills that help me work efficiently in team environments and deliver quality software. Here’s a glance at what I bring to the table.
-        </Typography>
+    <Box
+      id="about"
+      sx={{ py: 10, px: 2, backgroundColor: theme.palette.mode==="dark" ? "#160d08": "#F4F5FA"  }}
+    >
+      <Container maxWidth='lg'>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <Typography variant="h4" fontWeight="bold" gutterBottom>
+            Skills
+          </Typography>
+          <Typography variant="body1" sx={{ mb: 6 }}>
+            I'm a passionate developer with a wide array of technical skills and soft skills that help me work efficiently in team environments and deliver quality software. Here's a glance at what I bring to the table.
+          </Typography>
 
-        <Typography variant="h5" gutterBottom>
-          Technical Skills
-        </Typography>
-        <Grid container spacing={3}>
-          {skills.map((skill, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <SkillCard {...skill} />
+          <Box sx={{ mb: 6 }}>
+            <Typography variant="h5" fontWeight="bold" gutterBottom sx={{ mb: 3 }}>
+              Languages
+            </Typography>
+            <Grid container spacing={4}>
+              {skills.languages.map((skill, index) => (
+                <Grid item xs={12} md={6} key={index}>
+                  <SkillCard {...skill} />
+                </Grid>
+              ))}
             </Grid>
-          ))}
-        </Grid>
-      </motion.div>
+          </Box>
+
+          <Box sx={{ mb: 6 }}>
+            <Typography variant="h5" fontWeight="bold" gutterBottom sx={{ mb: 3 }}>
+              Frameworks
+            </Typography>
+            <Grid container spacing={4}>
+              {skills.frameworks.map((skill, index) => (
+                <Grid item xs={12} md={6} key={index}>
+                  <SkillCard {...skill} />
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+
+          <Box sx={{ mb: 6 }}>
+            <Typography variant="h5" fontWeight="bold" gutterBottom sx={{ mb: 3 }}>
+              Databases
+            </Typography>
+            <Grid container spacing={4}>
+              {skills.databases.map((skill, index) => (
+                <Grid item xs={12} md={6} key={index}>
+                  <SkillCard {...skill} />
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+          <Box sx={{ mb: 6 }}>
+            <Typography variant="h4" fontWeight="bold" gutterBottom sx={{ mb: 3 }}>
+              Softskills
+            </Typography>
+            <Grid container spacing={4}>
+              {skills.softskills.map((skill, index) => (
+                <Grid item xs={12} md={6} key={index}>
+                  <SkillCard {...skill} />
+                </Grid>
+              ))}
+            </Grid>
+          </Box>
+        </motion.div>
+      </Container>
     </Box>
   );
 };
