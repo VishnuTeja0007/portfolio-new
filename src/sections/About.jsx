@@ -12,11 +12,13 @@ import {
 import {
   Timeline,
   TimelineItem,
+  timelineItemClasses,
   TimelineSeparator,
   TimelineConnector,
   TimelineContent,
   TimelineDot,
 } from "@mui/lab";
+
 import SchoolIcon from "@mui/icons-material/School";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { motion } from "framer-motion";
@@ -65,138 +67,117 @@ const About = () => {
       sx={{ py: 10, px: 2, backgroundColor: theme.palette.background.default }}
     >
       <Container maxWidth="lg">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-        >
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7 }}
+      >
+        <Box sx={{ width: "100%" }}>
           <Typography variant="h4" fontWeight="bold" gutterBottom>
             About Me
           </Typography>
-
-          <Typography variant="body1" color="text.secondary" maxWidth="800px" paragraph>
+          <Typography variant="body1" color="text.secondary" paragraph>
             I'm Vishnu Teja, a full stack developer with a strong foundation in web technologies,
             passionate about turning ideas into clean, scalable code. With a background in Electrical
             Engineering and a knack for problem-solving, I bring discipline and creativity to development.
           </Typography>
-
-          <Typography variant="body1" color="text.secondary" maxWidth="800px" paragraph>
+          <Typography variant="body1" color="text.secondary" paragraph>
             During my B.Tech at JNTUA, I deeply explored Electrical and Electronics Engineering concepts,
             gaining hands-on experience in circuit design, control systems, and embedded systems. I
             also sharpened my programming skills and learned to approach technical challenges with
             analytical thinking.
           </Typography>
-
-          <Typography variant="body1" color="text.secondary" maxWidth="800px" paragraph>
+          <Typography variant="body1" color="text.secondary" paragraph>
             In Intermediate at Narayana Jr. College, I focused on Mathematics, Physics, and Chemistry,
             building a strong foundation that supported my engineering studies later on. This phase
             taught me the value of discipline and consistent effort.
           </Typography>
-
-          <Typography variant="body1" color="text.secondary" maxWidth="800px" paragraph>
+          <Typography variant="body1" color="text.secondary" paragraph>
             My 10th class at Sri Chaitanya High School was a formative time where I developed strong
             study habits and achieved top marks, which motivated me to pursue excellence throughout
             my academic career.
           </Typography>
-        </motion.div>
-
-        <Divider sx={{ my: 6 }} />
-
-        <Typography variant="h5" fontWeight="bold" gutterBottom>
-          Education Timeline
-        </Typography>
-
-        <Timeline position="alternate">
-          {educationData.map((item, index) => {
-            // Move 1st and 4th cards closer by reducing margin
-            const isLeftSide = index % 2 === 0;
-            const isFirstOrLast = index === 0 || index === educationData.length - 1;
-
-            return (
-              <TimelineItem key={index}>
-                <TimelineSeparator>
-                  <TimelineDot color="primary">
-                    <SchoolIcon />
-                  </TimelineDot>
-                  {index < educationData.length - 1 && <TimelineConnector />}
-                </TimelineSeparator>
-
-                <TimelineContent
+        </Box>
+      </motion.div>
+      <Divider sx={{ my: 6 }} />
+      <Typography variant="h5" fontWeight="bold" gutterBottom>
+        Education Timeline
+      </Typography>
+      <Timeline
+        sx={{
+          [`& .${timelineItemClasses.root}:before`]: {
+            flex: 0,
+            padding: 0,
+          },
+        }}
+      >
+        {educationData.map((item, index) => (
+          <TimelineItem key={index}>
+            <TimelineSeparator>
+              <TimelineDot color="primary">
+                <SchoolIcon />
+              </TimelineDot>
+              {index < educationData.length - 1 && <TimelineConnector />}
+            </TimelineSeparator>
+            <TimelineContent>
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.2 }}
+              >
+                <Box
                   sx={{
-                    textAlign: isLeftSide ? "right" : "left",
+                    p: 2,
+                    backgroundColor: theme.palette.background.paper,
+                    borderRadius: 2,
+                    boxShadow: 2,
+                    mb: 3,
+                    width: "100%", // Ensure it takes full width
                   }}
                 >
-                  <motion.div
-                    initial={{ opacity: 0, x: isLeftSide ? 30 : -30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.6, delay: index * 0.2 }}
-                  >
-                    <Box
+                  <Grid container spacing={2} alignItems="center">
+                    <Grid item xs={10}>
+                      <Typography variant="h6" fontWeight="bold">
+                        {item.title}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {item.description}
+                      </Typography>
+                    </Grid>
+                    <Grid
+                      item
+                      xs={2}
                       sx={{
-                        p: 2,
-                        backgroundColor: theme.palette.background.paper,
-                        borderRadius: 2,
-                        boxShadow: 2,
-                        mb: 3,
-                        maxWidth: 400,
-                        marginLeft: isLeftSide
-                          ? isFirstOrLast
-                            ? "auto"
-                            : "60px"
-                          : "0",
-                        marginRight: !isLeftSide
-                          ? isFirstOrLast
-                            ? "auto"
-                            : "60px"
-                          : "0",
-                        position: "relative",
+                        display: "flex",
+                        justifyContent: "flex-end",
                       }}
                     >
-                      <Grid container spacing={2} alignItems="center">
-                        <Grid item xs={10} md={10}>
-                          <Typography variant="h6" fontWeight="bold">
-                            {item.title}
-                          </Typography>
-                          <Typography variant="body2" color="text.secondary">
-                            {item.description}
-                          </Typography>
-                        </Grid>
-                        <Grid
-                          item
-                          xs={2}
-                          md={2}
-                          sx={{
-                            display: "flex",
-                            justifyContent: "flex-end",
-                          }}
-                        >
-                          <Link
-                            href={item.locationLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label={`Location for ${item.title}`}
-                          >
-                            <IconButton color="primary" size="small">
-                              <LocationOnIcon />
-                            </IconButton>
-                          </Link>
-                        </Grid>
-                      </Grid>
-
-                      <Typography variant="body2" sx={{ mt: 1 }}>
-                        <strong>Year:</strong> {item.year}
-                      </Typography>
-                      <Typography variant="body2">
-                        <strong>Marks:</strong> {item.marks}
-                      </Typography>
-                    </Box>
-                  </motion.div>
-                </TimelineContent>
-              </TimelineItem>
-            );
-          })}
-        </Timeline>
-      </Container>
+                      <Link
+                        href={item.locationLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        aria-label={`Location for ${item.title}`}
+                      >
+                        <IconButton color="primary" size="small">
+                          <LocationOnIcon />
+                        </IconButton>
+                      </Link>
+                    </Grid>
+                  </Grid>
+                  <Typography variant="body2" sx={{ mt: 1 }}>
+                    <strong>Year:</strong> {item.year}
+                  </Typography>
+                  <Typography variant="body2">
+                    <strong>Marks:</strong> {item.marks}
+                  </Typography>
+                </Box>
+              </motion.div>
+            </TimelineContent>
+          </TimelineItem>
+        ))}
+      </Timeline>
+    </Container>
+ 
     </Box>
   );
 };

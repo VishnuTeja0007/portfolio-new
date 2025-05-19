@@ -8,6 +8,7 @@ import {
 import Navbar from "./components/Navbar";
 import Home from "./sections/Home";
 import About from "./sections/About";
+import SkillsSection from "./sections/skills";
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -88,6 +89,7 @@ const App = () => {
       <Navbar darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       <Home />
       <About />
+      <SkillsSection/>
     </ThemeProvider>
   );
 };

@@ -2,14 +2,17 @@ import React from "react";
 import { Box, Typography, Button, Stack, useTheme, Container } from "@mui/material";
 import { Typewriter } from "react-simple-typewriter";
 import profilePic from "../assets/profile.jpg";
+import TechIcons from "../components/Techicons"; 
 
 const Home = () => {
   const theme = useTheme();
 
   return (
-  <Box
+<Box
   id="home"
   sx={{
+    position: "relative", // Important
+    overflow: "hidden",   // Prevent scrollbars
     minHeight: "100vh",
     display: "flex",
     alignItems: "center",
@@ -19,7 +22,7 @@ const Home = () => {
       : "linear-gradient(135deg, #f0f8ff 0%, #ffffff 100%)",
   }}
 >
-
+  <TechIcons /> {/* Add here */}
   {/* Your existing content */}
         <Container maxWidth="lg">
         <Box
