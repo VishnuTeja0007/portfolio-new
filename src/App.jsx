@@ -17,13 +17,14 @@ const App = () => {
   const theme = useMemo(() => {
     const basePalette = {
       primary: {
-        main: '#a93800', // burnt rose
+        main: '#00bcd4', // Vibrant Cyan
+        contrastText: '#ffffff',
       },
       secondary: {
-        main: '#00464b', // deep teal
+        main: '#ff7043', // Warm Orange for good contrast
       },
       info: {
-        main: '#00ffff', // cyan highlight
+        main: '#ab47bc', // Muted Purple accent
       },
     };
 
@@ -31,24 +32,24 @@ const App = () => {
       ? {
           mode: 'dark',
           background: {
-            default: '#0a1c1d', // rich dark background
-            paper: '#112728',
+            default: '#121212', // Near-black for contrast
+            paper: '#1e1e1e',    // Slightly lighter for surfaces
           },
           text: {
-            primary: '#e6f4f1',
-            secondary: '#b0bec5',
+            primary: '#e0e0e0',
+            secondary: '#bdbdbd',
           },
           ...basePalette,
         }
       : {
           mode: 'light',
           background: {
-            default: '#f4f6f5', // soft light background
+            default: '#f5f7f9', // Soft warm gray background
             paper: '#ffffff',
           },
           text: {
-            primary: '#1a1a1a',
-            secondary: '#555555',
+            primary: '#212121',
+            secondary: '#424242',
           },
           ...basePalette,
         };
