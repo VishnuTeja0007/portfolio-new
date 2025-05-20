@@ -9,6 +9,7 @@ import Navbar from "./components/Navbar";
 import Home from "./sections/Home";
 import About from "./sections/About";
 import SkillsSection from "./sections/skills";
+import ProjectSection from "./sections/Projects";
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -22,7 +23,7 @@ const App = () => {
         contrastText: '#ffffff',
       },
       secondary: {
-        main: '#ff7043', // Warm Orange for good contrast
+        main: darkMode ? '#ffffff' : '#000000', // White in dark mode, black in light mode
       },
       info: {
         main: '#ab47bc', // Muted Purple accent
@@ -90,6 +91,7 @@ const App = () => {
       <Home />
       <About />
       <SkillsSection/>
+      <ProjectSection/>
     </ThemeProvider>
   );
 };
