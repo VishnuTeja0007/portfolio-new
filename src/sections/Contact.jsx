@@ -35,10 +35,10 @@ const ContactSection = ({ mode }) => {
     severity: 'success'
   });
 
-  const serviceID = 'service_zgrlyz7';
-  const templateIDUser = 'template_66pmjf8'; // for user (reply from you)
-  const templateIDMe = 'template_o9q7275';   // for you (user details)
-  const publicKey = 'a8unZ2nanuK2_8i7H';
+  const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+  const templateIDUser = import.meta.env.VITE_EMAILJS_TEMPLATE_ID_USER;
+  const templateIDMe = import.meta.env.VITE_EMAILJS_TEMPLATE_ID_ME;
+  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
