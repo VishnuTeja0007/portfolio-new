@@ -88,12 +88,12 @@ const About = () => {
             analytical thinking.
           </Typography>
           <Typography variant="body1" color="text.secondary" paragraph>
-            In Intermediate at Narayana Jr. College, I focused on Mathematics, Physics, and Chemistry,
+            In Intermediate at Sai Krupa Junior Jr. College, I focused on Mathematics, Physics, and Chemistry,
             building a strong foundation that supported my engineering studies later on. This phase
             taught me the value of discipline and consistent effort.
           </Typography>
           <Typography variant="body1" color="text.secondary" paragraph>
-            My 10th class at Sri Chaitanya High School was a formative time where I developed strong
+            My 10th class at Sadhana E.M High School was a formative time where I developed strong
             study habits and achieved top marks, which motivated me to pursue excellence throughout
             my academic career.
           </Typography>

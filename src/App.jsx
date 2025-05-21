@@ -10,6 +10,10 @@ import Home from "./sections/Home";
 import About from "./sections/About";
 import SkillsSection from "./sections/skills";
 import ProjectSection from "./sections/Projects";
+import ContactSection from "./sections/Contact";
+import Footer from "./components/Footer";
+import FloatingActionButton from "./components/FloatingActionButton";
+// import ContactSection from "./sections/ContactSection";
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -92,6 +96,9 @@ const App = () => {
       <About />
       <SkillsSection/>
       <ProjectSection/>
+      <ContactSection/>
+      <Footer/>
+      <FloatingActionButton/>
     </ThemeProvider>
   );
 };
