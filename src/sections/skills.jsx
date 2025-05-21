@@ -105,34 +105,34 @@ const SkillCard = ({ icon, title, description, rating }) => {
       <Paper
         elevation={3}
         sx={{
-          p: 4,
+          p: { xs: 2, sm: 3, md: 4 },
           display: "flex",
           flexDirection: "column",
-          gap: 3,
+          gap: { xs: 2, sm: 3 },
           height: "100%",
-          width:{lg:"80vw"},
+          width: { lg: "80vw" },
           borderRadius: 0,
         }}
       >
-        <Box sx={{ display: "flex", alignItems: "center", gap: 3 }}>
+        <Box sx={{ display: "flex", alignItems: "center", gap: { xs: 2, sm: 3 } }}>
           <Box
             component="img"
             src={icon}
             alt={title}
-            sx={{ width: 60, height: 60 }}
+            sx={{ width: { xs: 40, sm: 50, md: 60 }, height: { xs: 40, sm: 50, md: 60 } }}
           />
           <Box>
-            <Typography variant="h5" fontWeight="bold">{title}</Typography>
+            <Typography variant="h5" fontWeight="bold" sx={{ fontSize: { xs: '1.1rem', sm: '1.25rem', md: '1.5rem' } }}>{title}</Typography>
             <Box sx={{ display: "flex", gap: 0.5, mt: 1 }}>
               {[...Array(5)].map((_, index) => (
                 index < rating ? 
-                  <StarIcon key={index} sx={{ color: "gold" }} /> : 
-                  <StarBorderIcon key={index} sx={{ color: "gold" }} />
+                  <StarIcon key={index} sx={{ color: "gold", fontSize: { xs: '1rem', sm: '1.25rem' } }} /> : 
+                  <StarBorderIcon key={index} sx={{ color: "gold", fontSize: { xs: '1rem', sm: '1.25rem' } }} />
               ))}
             </Box>
           </Box>
         </Box>
-        <Typography variant="body1" sx={{ fontSize: "1.1rem", lineHeight: 1.6 }}>
+        <Typography variant="body1" sx={{ fontSize: { xs: '0.9rem', sm: '1rem', md: '1.1rem' }, lineHeight: 1.6 }}>
           {description}
         </Typography>
       </Paper>
@@ -144,8 +144,8 @@ const SkillsSection = () => {
   const theme = useTheme();
   return (
     <Box
-      id="about"
-      sx={{ py: 10, px: 2, backgroundColor: theme.palette.mode==="dark" ? "#160d08": "#F4F5FA"  }}
+      id="skills"
+      sx={{ py: 10, px: 2, backgroundColor: theme.palette.mode==="dark" ? theme.palette.background.default: "#F4F5FA"  }}
     >
       <Container maxWidth='lg'>
         <motion.div
