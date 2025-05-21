@@ -2,7 +2,7 @@
 
 A modern, responsive portfolio website built with React and Material-UI, featuring smooth animations and a clean design.
 
-![Portfolio Preview](src/assets/projects/snappycelebrations.png)
+![Portfolio Preview](src/assets/projects/portfoio-intro.png)
 
 ## 🚀 Features
 
@@ -82,18 +82,18 @@ npm install
 
 3. Start the development server:
 ```bash
-npm start
+npm run dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+4. Open [http://localhost:5173](http://localhost:3000) to view it in your browser.
 
 ## 📸 Screenshots
 
 ### Projects Section
-![Projects Section](src/assets/projects/chatapp.png)
+![Projects Section](src/assets/projects/portfolio-projects.png)
 
 ### Project Card
-![Project Card](src/assets/projects/cookingfever.png)
+![Project Card](src/assets/projects/portfolio-projects-card.png)
 
 ## 🎨 Customization
 
@@ -108,8 +108,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 👤 Author
 
 Your Name
-- GitHub: [@yourusername](https://github.com/yourusername)
-- LinkedIn: [Your LinkedIn](https://linkedin.com/in/yourusername)
+- GitHub: [@yourusername](https://github.com/VishnuTeja0007)
+- LinkedIn: [Your LinkedIn](www.linkedin.com/in/vishnu-teja-cheepati-055244252)
 
 ## 🙏 Acknowledgments
 
