@@ -70,7 +70,6 @@ const ContactSection = ({ mode }) => {
       });
 
       // Reset form
-      console.log(serviceID,templateIDUser,publicKey,templateIDMe)
       formRef.current.reset();
     } catch (error) {
       console.error('Error sending email:', error);
